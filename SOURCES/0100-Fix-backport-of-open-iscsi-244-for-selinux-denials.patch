@@ -1,0 +1,25 @@
+diff --git a/libopeniscsiusr/idbm.c.orig b/libopeniscsiusr/idbm.c
+index 6213e62..70633c6 100644
+--- a/libopeniscsiusr/idbm.c.orig
++++ b/libopeniscsiusr/idbm.c
+@@ -328,7 +328,7 @@ int _idbm_lock(struct iscsi_context *ctx)
+ 		return LIBISCSI_ERR_IDBM;
+ 	}
+ 
+-	fd = open(LOCK_FILE, O_RDWR | O_CREAT, 0666);
++	fd = open(LOCK_FILE, O_RDWR | O_CREAT, 0777);
+ 	if (fd >= 0)
+ 		close(fd);
+ 
+diff --git a/usr/idbm.c.orig b/usr/idbm.c
+index e9025bf..4f007f6 100644
+--- a/usr/idbm.c.orig
++++ b/usr/idbm.c
+@@ -1467,7 +1467,7 @@ int idbm_lock(void)
+ 		return ISCSI_ERR_IDBM;
+ 	}
+ 
+-	fd = open(LOCK_FILE, O_RDWR | O_CREAT, 0666);
++	fd = open(LOCK_FILE, O_RDWR | O_CREAT, 0777);
+ 	if (fd >= 0)
+ 		close(fd);
