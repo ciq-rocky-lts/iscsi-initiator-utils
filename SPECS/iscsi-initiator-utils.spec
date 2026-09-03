@@ -9,7 +9,7 @@
 Summary:              iSCSI daemon and utility programs
 Name:                 iscsi-initiator-utils
 Version:              6.%{open_iscsi_version}.%{open_iscsi_build}
-Release:              3.git%{shortcommit0}%{?dist}.0.1
+Release:              3.git%{shortcommit0}.1%{?dist}.0.1
 License:              GPLv2+
 URL:                  https://github.com/open-iscsi/open-iscsi
 Source0:              https://github.com/open-iscsi/open-iscsi/archive/%{commit0}.tar.gz#/open-iscsi-%{shortcommit0}.tar.gz
@@ -43,6 +43,10 @@ Patch0024:            0024-minor-service-file-updates.patch
 Patch0025:            0001-Remove-dependences-from-iscsi-init.service.patch
 Patch0026:            0001-fix-libiscsi-firmware-discovery-issue-with-NULL-drec.patch
 Patch27:              0100-Fix-backport-of-open-iscsi-244-for-selinux-denials.patch
+
+# CVE-2026-44943 / CVE-2026-44944: iqn_name_valid() input validation +
+# iscsiuio control-socket fd verification fix (upstream commit 668ca1df)
+Patch28:              iscsi-initiator-utils-CVE-2026-44943.patch
 
 BuildRequires:        flex bison doxygen kmod-devel systemd-units
 BuildRequires:        autoconf automake libtool libmount-devel openssl-devel
@@ -306,6 +310,9 @@ fi
 %{python3_sitearch}/*
 
 %changelog
+* Sun Aug 16 2026 Jason Rodriguez <jrodriguez@ciq.com> - 6.2.1.4-3.git2a8f9d8.1.0.1
+- Fix CVE-2026-44943 / CVE-2026-44944: iqn_name_valid() input validation + iscsiuio control-socket fd verification
+
 * Tue Nov 05 2024 Skip Grube <sgrube@ciq.com> - 6.2.1.4-3.git2a8f9d8.0.1
 - Fix LOCKFILE permissions, corrects SELinux denials
 
